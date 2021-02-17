@@ -1,3 +1,23 @@
 header {
     background: green;
 }
+body{
+    background-color: #f8f8f8;
+}
+.maincontent{
+    width: 90%;
+    margin: auto;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+}
+a:hover{
+    background-color: palegreen;
+}
+.maincontent div{
+    flex: 20%;
+    margin: 5pc;
+    width: 10pc;
+    height: 10pc;
+    border: 1px solid black;
+}
