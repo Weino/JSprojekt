@@ -1,5 +1,6 @@
 let content = document.querySelector(".maincontent");
 const apiKey = "&apiKey=94564cc1b6754402a0363870a50ee0bf";
+const apiKeyTwo = "&apiKey=1cb337ec57a447e488f87ef787b2db7e";
 const url = "https://api.spoonacular.com/recipes/";
 document.querySelector("#randomlink").onclick = function () {
   removeElement();
@@ -19,6 +20,24 @@ function getApi(getString) {
 }
 function writeOut(data) {
   let recipe = [];
+  let search = document.querySelector(".search-button")
+  let search_term = "";
+
+  search.addEventListener('input', e => {
+  search_term = e.target.value;
+  showRecipe()
+  })
+
+  const showRecipe = async() => {
+    // clear the results
+    content.innerHTML = '';
+    
+   let result = recipe.filter(recipe =>
+      recipe.Name.includes(search_term)
+    )
+
+    console.log(result)
+}
   for (let index = 0; index < data.recipes.length; index++) {
     recipe[index] = {
       Name: data.recipes[index].title,
@@ -62,6 +81,8 @@ function writeOut(data) {
     recipeDiv.appendChild(recipeInfoDiv);
 
     content.appendChild(recipeDiv);
+
+
   }
 }
 function removeElement() {
