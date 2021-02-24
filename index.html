@@ -30,24 +30,45 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-              <a id="toprecipes"class="nav-link active" aria-current="page" href="#">Home</a>
-              <a class="nav-link" href="#">Features</a>
-              <a class="nav-link" href="#">Pricing</a>
               <a
-                class="nav-link disabled"
+                id="veggielink"
+                class="nav-link active"
+                aria-current="page"
                 href="#"
-                tabindex="-1"
-                aria-disabled="true"
-                >Disabled</a
+                >Veggie</a
               >
+              <a id="veganlink" class="nav-link active" href="#">Vegan</a>
+              <a id="cheapestlink" class="nav-link active" href="#">Cheap Meals</a>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle active"
+                  href="#"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Cousines
+                </a>
+                <ul
+                  class="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <li><a id="americanlink" class="dropdown-item" href="#">American</a></li>
+                  <li><a id="africanlink" class="dropdown-item" href="#">African</a></li>
+                  <li><a id="asianlink" class="dropdown-item" href="#">Asian</a></li>
+                  <li>
+                    <a id="europeanlink" class="dropdown-item" href="#">European</a>
+                  </li>
+                </ul>
+              </li>
             </div>
           </div>
         </div>
       </nav>
     </header>
     <div class="recipesimg">Bild på recept senare. Carousel?</div>
-    <main class="maincontent">
-    </main>
+    <main class="maincontent"></main>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
