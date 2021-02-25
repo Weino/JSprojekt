@@ -14,7 +14,7 @@ document.querySelector("#randomlink").onclick = function () {
 
   createAltHeader.innerHTML = "Random Meals";
   content.appendChild(createAltHeader);
-  
+
   getApi(sendString);
 };
 
@@ -26,7 +26,7 @@ document.querySelector("#veggielink").onclick = function () {
   let sendString = random + number + veggie;
   let createAltHeader = document.createElement("h3");
 
-  createAltHeader.innerHTML = "Vegetarian"
+  createAltHeader.innerHTML = "Vegetarian";
   content.appendChild(createAltHeader);
 
   getApi(sendString);
@@ -42,12 +42,29 @@ document.querySelector("#veganlink").onclick = function () {
 
   createAltHeader.innerHTML = "Vegan";
   content.appendChild(createAltHeader);
-  
+
   getApi(sendString);
 };
 
+document.querySelector("#quicklink").onclick = function () {
+  removeElement();
+  let random = "complexSearch";
+  let number = "?number=3";
+  let mealType = "&type=dinner";
+  let addInfo = "&addRecipeInformation=true";
+  let quickmeal = "&maxReadyTime=25";
+
+  let sendString = random + number + mealType + addInfo + quickmeal;
+
+  let createAltHeader = document.createElement("h3");
+
+  createAltHeader.innerHTML = "Quick Meals";
+  content.appendChild(createAltHeader);
+
+  getApi(sendString);
+};
 function getApi(getString) {
-  fetch(url + "recipes/" + getString + apiKey)
+  fetch(url + urltype + getString + apiKey)
     .then((response) => response.json())
 
     .then((data) => {
@@ -73,52 +90,101 @@ function writeOut(data) {
 
     console.log(result);
   };
-  for (let index = 0; index < data.recipes.length; index++) {
-    recipe[index] = {
-      Name: data.recipes[index].title,
-      Image: data.recipes[index].image,
-      Time: data.recipes[index].readyInMinutes,
-      Dishtype: data.recipes[index].dishTypes,
-      Summary: data.recipes[index].summary,
-    };
+  try {
+    for (let index = 0; index < data.recipes.length; index++) {
+      recipe[index] = {
+        Name: data.recipes[index].title,
+        Image: data.recipes[index].image,
+        Time: data.recipes[index].readyInMinutes,
+        Dishtype: data.recipes[index].dishTypes,
+        Summary: data.recipes[index].summary,
+      };
 
-    let recipeDiv = document.createElement("div");
-    let imgDiv = document.createElement("div");
-    let recipeInfoDiv = document.createElement("div");
-    let recipeName = document.createElement("h5");
-    let recipeImage = document.createElement("img");
-    let recipeTime = document.createElement("p");
-    let recipeType = document.createElement("p");
-    let recipeSum = document.createElement("p");
-    let toRecipe = document.createElement("button");
+      let recipeDiv = document.createElement("div");
+      let imgDiv = document.createElement("div");
+      let recipeInfoDiv = document.createElement("div");
+      let recipeName = document.createElement("h5");
+      let recipeImage = document.createElement("img");
+      let recipeTime = document.createElement("p");
+      let recipeType = document.createElement("p");
+      let recipeSum = document.createElement("p");
+      let toRecipe = document.createElement("button");
 
+      recipeSum.innerHTML = recipe[index].Summary;
+      toRecipe.innerHTML = "View";
+      toRecipe.className = "recipebtn";
+      toRecipe.id = "recipe" + index;
+      recipeDiv.id = "recipediv";
+      recipeInfoDiv.id = "info";
+      imgDiv.id = "imgdiv";
+      recipeImage.src = recipe[index].Image;
+      recipeType.innerHTML =
+        "<b>Type of meal:</b> <br>" + recipe[index].Dishtype;
+      recipeTime.innerHTML =
+        "<b>Time:</b> <br>Ready in " + recipe[index].Time + " minutes";
+      recipeName.innerHTML = recipe[index].Name;
 
- 
-    recipeSum.innerHTML = recipe[index].Summary;
-    toRecipe.innerHTML = "View";
-    toRecipe.className = "recipebtn";
-    toRecipe.id = "recipe" + index;
-    recipeDiv.id = "recipediv";
-    recipeInfoDiv.id = "info";
-    imgDiv.id = "imgdiv";
-    recipeImage.src = recipe[index].Image;
-    recipeType.innerHTML = "<b>Type of meal:</b> <br>" + recipe[index].Dishtype;
-    recipeTime.innerHTML =
-      "<b>Time:</b> <br>Ready in " + recipe[index].Time + " minutes";
-    recipeName.innerHTML = recipe[index].Name;
+      imgDiv.appendChild(recipeImage);
+      imgDiv.appendChild(recipeType);
+      imgDiv.appendChild(recipeTime);
+      imgDiv.appendChild(toRecipe);
 
-    imgDiv.appendChild(recipeImage);
-    imgDiv.appendChild(recipeType);
-    imgDiv.appendChild(recipeTime);
-    imgDiv.appendChild(toRecipe);
+      recipeInfoDiv.appendChild(recipeName);
+      recipeInfoDiv.appendChild(recipeSum);
 
-    recipeInfoDiv.appendChild(recipeName);
-    recipeInfoDiv.appendChild(recipeSum);
+      recipeDiv.appendChild(imgDiv);
+      recipeDiv.appendChild(recipeInfoDiv);
 
-    recipeDiv.appendChild(imgDiv);
-    recipeDiv.appendChild(recipeInfoDiv);
+      content.appendChild(recipeDiv);
+    }
+  } catch {
+    for (let index = 0; index < data.results.length; index++) {
+      recipe[index] = {
+        Name: data.results[index].title,
+        Image: data.results[index].image,
+        Time: data.results[index].readyInMinutes,
+        Dishtype: data.results[index].dishTypes,
+        Summary: data.results[index].summary,
+      };
+      console.log(data.results[index])
 
-    content.appendChild(recipeDiv);
+      let recipeDiv = document.createElement("div");
+      let imgDiv = document.createElement("div");
+      let recipeInfoDiv = document.createElement("div");
+      let recipeName = document.createElement("h5");
+      let recipeImage = document.createElement("img");
+      let recipeTime = document.createElement("p");
+      let recipeType = document.createElement("p");
+      let recipeSum = document.createElement("p");
+      let toRecipe = document.createElement("button");
+
+      recipeSum.innerHTML = recipe[index].Summary;
+      toRecipe.innerHTML = "View";
+      toRecipe.className = "recipebtn";
+      toRecipe.id = "recipe" + index;
+      recipeDiv.id = "recipediv";
+      recipeInfoDiv.id = "info";
+      imgDiv.id = "imgdiv";
+      recipeImage.src = recipe[index].Image;
+      recipeType.innerHTML =
+        "<b>Type of meal:</b> <br>" + recipe[index].Dishtype;
+      recipeTime.innerHTML =
+        "<b>Time:</b> <br>Ready in " + recipe[index].Time + " minutes";
+      recipeName.innerHTML = recipe[index].Name;
+
+      imgDiv.appendChild(recipeImage);
+      imgDiv.appendChild(recipeType);
+      imgDiv.appendChild(recipeTime);
+      imgDiv.appendChild(toRecipe);
+
+      recipeInfoDiv.appendChild(recipeName);
+      recipeInfoDiv.appendChild(recipeSum);
+
+      recipeDiv.appendChild(imgDiv);
+      recipeDiv.appendChild(recipeInfoDiv);
+
+      content.appendChild(recipeDiv);
+    }
   }
 }
 
@@ -129,8 +195,8 @@ function removeElement() {
     removeRecipeDiv[index].remove();
   }
 
-  let removeheader = document.querySelectorAll("h3")
-  
+  let removeheader = document.querySelectorAll("h3");
+
   for (let index = 0; index < removeheader.length; index++) {
     removeheader[index].remove();
   }
