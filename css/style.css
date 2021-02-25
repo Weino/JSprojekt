@@ -60,3 +60,28 @@ a:hover{
     background-color: palegreen;
     color: black;
 }
+
+.meny {    
+    font-weight: 900;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.15rem;
+    padding: 1em;
+}
+
+.home-background {
+    background-image: url(../img/matbilden.jpg);
+    padding: 15em 0;
+    color: #FFF;
+    background-size: cover;
+    background-position: center;
+}
+
+.search-container {
+    position: absolute;
+    left: 45%;
+}
+
+.search {
+    text-align: center;
+}
