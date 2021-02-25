@@ -31,6 +31,7 @@ a:hover{
     background-color: white;
     margin: 10px;
     padding: 15px;
+    border-radius: 5px;
     border-bottom: 5px solid #f8f8f8;
 }
  #imgdiv{
@@ -48,14 +49,14 @@ a:hover{
     max-width: 300px;
     height: 50%;
 }
-#recipebtn {
-    border-radius: 50%;
+.recipebtn {
+    border-radius: 5px;
     background-color: green;
     color: white;
     width: min-content;
     border: 1px solid #f8f8f8;
 }
-#recipebtn:hover{
+.recipebtn:hover{
     background-color: palegreen;
     color: black;
 }

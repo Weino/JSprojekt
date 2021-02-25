@@ -1,43 +1,78 @@
 let content = document.querySelector(".maincontent");
 const apiKey = "&apiKey=94564cc1b6754402a0363870a50ee0bf";
 const apiKeyTwo = "&apiKey=1cb337ec57a447e488f87ef787b2db7e";
-const url = "https://api.spoonacular.com/recipes/";
+const url = "https://api.spoonacular.com/";
+const urltype = "recipes/";
+
 document.querySelector("#randomlink").onclick = function () {
   removeElement();
   let random = "random";
   let number = "?number=3";
   let mealType = "&tags=dinner";
   let sendString = random + number + mealType;
+  let createAltHeader = document.createElement("h3");
+
+  createAltHeader.innerHTML = "Random Meals";
+  content.appendChild(createAltHeader);
+  
   getApi(sendString);
 };
+
+document.querySelector("#veggielink").onclick = function () {
+  removeElement();
+  let random = "random";
+  let number = "?number=3";
+  let veggie = "&vegetarian=true";
+  let sendString = random + number + veggie;
+  let createAltHeader = document.createElement("h3");
+
+  createAltHeader.innerHTML = "Vegetarian"
+  content.appendChild(createAltHeader);
+
+  getApi(sendString);
+};
+
+document.querySelector("#veganlink").onclick = function () {
+  removeElement();
+  let random = "random";
+  let number = "?number=3";
+  let vegan = "&vegan=true";
+  let sendString = random + number + vegan;
+  let createAltHeader = document.createElement("h3");
+
+  createAltHeader.innerHTML = "Vegan";
+  content.appendChild(createAltHeader);
+  
+  getApi(sendString);
+};
+
 function getApi(getString) {
-  fetch(url + getString + apiKey)
+  fetch(url + "recipes/" + getString + apiKey)
     .then((response) => response.json())
 
     .then((data) => {
       writeOut(data);
     });
 }
+
 function writeOut(data) {
   let recipe = [];
-  let search = document.querySelector(".search-button")
+  let search = document.querySelector(".search-button");
   let search_term = "";
 
-  search.addEventListener('input', e => {
-  search_term = e.target.value;
-  showRecipe()
-  })
+  search.addEventListener("input", (e) => {
+    search_term = e.target.value;
+    showRecipe();
+  });
 
-  const showRecipe = async() => {
+  const showRecipe = async () => {
     // clear the results
-    content.innerHTML = '';
-    
-   let result = recipe.filter(recipe =>
-      recipe.Name.includes(search_term)
-    )
+    content.innerHTML = "";
 
-    console.log(result)
-}
+    let result = recipe.filter((recipe) => recipe.Name.includes(search_term));
+
+    console.log(result);
+  };
   for (let index = 0; index < data.recipes.length; index++) {
     recipe[index] = {
       Name: data.recipes[index].title,
@@ -57,9 +92,12 @@ function writeOut(data) {
     let recipeSum = document.createElement("p");
     let toRecipe = document.createElement("button");
 
+
+ 
     recipeSum.innerHTML = recipe[index].Summary;
     toRecipe.innerHTML = "View";
-    toRecipe.id = "recipebtn";
+    toRecipe.className = "recipebtn";
+    toRecipe.id = "recipe" + index;
     recipeDiv.id = "recipediv";
     recipeInfoDiv.id = "info";
     imgDiv.id = "imgdiv";
@@ -81,14 +119,19 @@ function writeOut(data) {
     recipeDiv.appendChild(recipeInfoDiv);
 
     content.appendChild(recipeDiv);
-
-
   }
 }
+
 function removeElement() {
   // tar bort element när man kallar på funktionen
   let removeRecipeDiv = document.querySelectorAll("#recipediv");
   for (let index = 0; index < removeRecipeDiv.length; index++) {
     removeRecipeDiv[index].remove();
+  }
+
+  let removeheader = document.querySelectorAll("h3")
+  
+  for (let index = 0; index < removeheader.length; index++) {
+    removeheader[index].remove();
   }
 }
