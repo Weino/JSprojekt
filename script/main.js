@@ -52,7 +52,7 @@ document.querySelector("#quicklink").onclick = function () {
   let number = "?number=3";
   let mealType = "&type=dinner";
   let addInfo = "&addRecipeInformation=true";
-  let quickmeal = "&maxReadyTime=25";
+  let quickmeal = "&maxReadyTime=16";
 
   let sendString = random + number + mealType + addInfo + quickmeal;
 
