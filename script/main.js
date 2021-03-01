@@ -54,7 +54,8 @@ document.querySelector("#quicklink").onclick = function () {
   let addInfo = "&addRecipeInformation=true";
   let quickmeal = "&maxReadyTime=16";
 
-  let sendString = random + number + mealType + addInfo + quickmeal;
+  let sendString =
+    random + number + mealType + addInfo + quickmeal + "&sort=random";
 
   let createAltHeader = document.createElement("h3");
 
@@ -63,12 +64,23 @@ document.querySelector("#quicklink").onclick = function () {
 
   getApi(sendString);
 };
+
 function getApi(getString) {
   fetch(url + urltype + getString + apiKey)
     .then((response) => response.json())
 
     .then((data) => {
+      console.log(data);
       writeOut(data);
+    });
+}
+function seeApi(getString) {
+  fetch(url + urltype + getString + apiKey)
+    .then((response) => response.json())
+
+    .then((data) => {
+      console.log(data);
+      writeOutRecipe(data);
     });
 }
 
@@ -95,6 +107,7 @@ function writeOut(data) {
       recipe[index] = {
         Name: data.recipes[index].title,
         Image: data.recipes[index].image,
+        Id: data.recipes[index].id,
         Time: data.recipes[index].readyInMinutes,
         Dishtype: data.recipes[index].dishTypes,
         Summary: data.recipes[index].summary,
@@ -113,7 +126,7 @@ function writeOut(data) {
       recipeSum.innerHTML = recipe[index].Summary;
       toRecipe.innerHTML = "View";
       toRecipe.className = "recipebtn";
-      toRecipe.id = "recipe" + index;
+      toRecipe.id = recipe[index].Id;
       recipeDiv.id = "recipediv";
       recipeInfoDiv.id = "info";
       imgDiv.id = "imgdiv";
@@ -136,17 +149,20 @@ function writeOut(data) {
       recipeDiv.appendChild(recipeInfoDiv);
 
       content.appendChild(recipeDiv);
+
+      //viewRecipe();
     }
   } catch {
     for (let index = 0; index < data.results.length; index++) {
       recipe[index] = {
         Name: data.results[index].title,
         Image: data.results[index].image,
+        Id: data.results[index].id,
         Time: data.results[index].readyInMinutes,
         Dishtype: data.results[index].dishTypes,
         Summary: data.results[index].summary,
       };
-      console.log(data.results[index])
+      console.log(data.results[index]);
 
       let recipeDiv = document.createElement("div");
       let imgDiv = document.createElement("div");
@@ -161,7 +177,7 @@ function writeOut(data) {
       recipeSum.innerHTML = recipe[index].Summary;
       toRecipe.innerHTML = "View";
       toRecipe.className = "recipebtn";
-      toRecipe.id = "recipe" + index;
+      toRecipe.id = recipe[index].Id;
       recipeDiv.id = "recipediv";
       recipeInfoDiv.id = "info";
       imgDiv.id = "imgdiv";
@@ -184,10 +200,52 @@ function writeOut(data) {
       recipeDiv.appendChild(recipeInfoDiv);
 
       content.appendChild(recipeDiv);
+
+      viewRecipe(recipe[index].Id);
     }
   }
 }
 
+function viewRecipe(id) {
+  let toRecipe = document.getElementById(id);
+  toRecipe.addEventListener("click", function () {
+    removeElement();
+
+    let sendString = id + "/analyzedInstructions?stepBreakdown=true";
+    console.log(sendString);
+
+    seeApi(sendString);
+  });
+}
+function writeOutRecipe(data) {
+  let instructions = [];
+  for (let index = 0; index < data.length; index++) {
+    for (let i = 0; i < data[index].steps.length; i++) {
+      instructions[index] = {
+        Image: data[index].steps[i].equipment.image,
+        Instruction: data[index].steps[i].step,
+        Number: data[index].steps[i].number,
+      };
+
+      let recipeDiv = document.createElement("div");
+      let instructionNumber = document.createElement("h5");
+      let instructionImage = document.createElement("img");
+      let instructionStep = document.createElement("p");
+
+      recipeDiv.id = "recipediv";
+      instructionNumber.innerHTML = instructions[index].Number;
+      instructionImage.src = instructions[index].Image;
+      instructionStep.innerHTML = instructions[index].Instruction;
+
+      recipeDiv.appendChild(instructionNumber);
+      recipeDiv.appendChild(instructionImage);
+
+      recipeDiv.appendChild(instructionStep);
+
+      content.appendChild(recipeDiv);
+    }
+  }
+}
 function removeElement() {
   // tar bort element när man kallar på funktionen
   let removeRecipeDiv = document.querySelectorAll("#recipediv");
