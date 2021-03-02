@@ -17,8 +17,9 @@ document.querySelector("#randomlink").onclick = function () {
   let random = "complexSearch";
   let number = "?number=3";
   let mealType = "&tags=dinner";
+  let addInfo = "&addRecipeInformation=true";
   let sort = "&sort=random";
-  let sendString = random + number + mealType + sort;
+  let sendString = random + number + mealType + sort + addInfo;
   let createAltHeader = document.createElement("h3");
 
   createAltHeader.innerHTML = "Random Meals";
@@ -32,7 +33,10 @@ document.querySelector("#veggielink").onclick = function () {
   let random = "complexSearch";
   let number = "?number=3";
   let veggie = "&diet=vegetarian";
-  let sendString = random + number + veggie;
+  let addInfo = "&addRecipeInformation=true";
+  let type = "&sort=random";
+
+  let sendString = random + number + veggie + type + addInfo;
   let createAltHeader = document.createElement("h3");
 
   createAltHeader.innerHTML = "Vegetarian";
@@ -46,7 +50,10 @@ document.querySelector("#veganlink").onclick = function () {
   let random = "complexSearch";
   let number = "?number=3";
   let vegan = "&diet=vegan";
-  let sendString = random + number + vegan;
+  let addInfo = "&addRecipeInformation=true";
+  let type = "&sort=random";
+
+  let sendString = random + number + vegan + type + addInfo;
   let createAltHeader = document.createElement("h3");
 
   createAltHeader.innerHTML = "Vegan";
