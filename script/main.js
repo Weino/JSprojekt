@@ -6,13 +6,12 @@ const urltype = "recipes/";
 
 let searchButton = document.querySelector(".search-button");
 
-searchButton .addEventListener('keypress', function (e) {
-  if (e.key === 'Enter') {
+searchButton.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
     search_term = e.target.value;
     search(search_term);
   }
 });
-
 document.querySelector("#randomlink").onclick = function () {
   removeElement();
   let random = "random";
@@ -110,17 +109,10 @@ function search(search_term) {
 
   getApi(sendString);
 };
-
 function writeOut(data) {
+  
   let recipe = [];
-  const showRecipe = async () => {
-    // clear the results
-    content.innerHTML = "";
 
-    let result = recipe.filter((recipe) => recipe.Name.includes(search_term));
-
-    console.log(result);
-  };
   try {
     for (let index = 0; index < data.recipes.length; index++) {
       recipe[index] = {
