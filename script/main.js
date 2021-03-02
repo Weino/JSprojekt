@@ -14,10 +14,11 @@ searchButton.addEventListener("keypress", function (e) {
 });
 document.querySelector("#randomlink").onclick = function () {
   removeElement();
-  let random = "random";
+  let random = "complexSearch";
   let number = "?number=3";
   let mealType = "&tags=dinner";
-  let sendString = random + number + mealType;
+  let sort = "&sort=random";
+  let sendString = random + number + mealType + sort;
   let createAltHeader = document.createElement("h3");
 
   createAltHeader.innerHTML = "Random Meals";
@@ -28,9 +29,9 @@ document.querySelector("#randomlink").onclick = function () {
 
 document.querySelector("#veggielink").onclick = function () {
   removeElement();
-  let random = "random";
+  let random = "complexSearch";
   let number = "?number=3";
-  let veggie = "&vegetarian=true";
+  let veggie = "&diet=vegetarian";
   let sendString = random + number + veggie;
   let createAltHeader = document.createElement("h3");
 
@@ -42,9 +43,9 @@ document.querySelector("#veggielink").onclick = function () {
 
 document.querySelector("#veganlink").onclick = function () {
   removeElement();
-  let random = "random";
+  let random = "complexSearch";
   let number = "?number=3";
-  let vegan = "&vegan=true";
+  let vegan = "&diet=vegan";
   let sendString = random + number + vegan;
   let createAltHeader = document.createElement("h3");
 
@@ -61,9 +62,9 @@ document.querySelector("#quicklink").onclick = function () {
   let mealType = "&type=dinner";
   let addInfo = "&addRecipeInformation=true";
   let quickmeal = "&maxReadyTime=16";
+  let type = "&sort=random";
 
-  let sendString =
-    random + number + mealType + addInfo + quickmeal + "&sort=random";
+  let sendString = random + number + mealType + addInfo + quickmeal + type;
 
   let createAltHeader = document.createElement("h3");
 
@@ -96,11 +97,10 @@ function search(search_term) {
   removeElement();
   let method = "complexSearch";
   let number = "?number=3";
-  let query = "&query="+search_term;
+  let query = "&query=" + search_term;
   let addInfo = "&addRecipeInformation=true";
 
-  let sendString =
-    method + number + query + addInfo + "&sort=random";
+  let sendString = method + number + query + addInfo + "&sort=random";
 
   let createAltHeader = document.createElement("h3");
 
@@ -108,9 +108,8 @@ function search(search_term) {
   content.appendChild(createAltHeader);
 
   getApi(sendString);
-};
+}
 function writeOut(data) {
-  
   let recipe = [];
 
   try {
