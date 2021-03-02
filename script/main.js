@@ -4,6 +4,15 @@ const apiKeyTwo = "&apiKey=1cb337ec57a447e488f87ef787b2db7e";
 const url = "https://api.spoonacular.com/";
 const urltype = "recipes/";
 
+let searchButton = document.querySelector(".search-button");
+
+searchButton .addEventListener('keypress', function (e) {
+  if (e.key === 'Enter') {
+    search_term = e.target.value;
+    search(search_term);
+  }
+});
+
 document.querySelector("#randomlink").onclick = function () {
   removeElement();
   let random = "random";
@@ -84,16 +93,26 @@ function seeApi(getString) {
     });
 }
 
+function search(search_term) {
+  removeElement();
+  let method = "complexSearch";
+  let number = "?number=3";
+  let query = "&query="+search_term;
+  let addInfo = "&addRecipeInformation=true";
+
+  let sendString =
+    method + number + query + addInfo + "&sort=random";
+
+  let createAltHeader = document.createElement("h3");
+
+  createAltHeader.innerHTML = "Search Result For: " + search_term;
+  content.appendChild(createAltHeader);
+
+  getApi(sendString);
+};
+
 function writeOut(data) {
   let recipe = [];
-  let search = document.querySelector(".search-button");
-  let search_term = "";
-
-  search.addEventListener("input", (e) => {
-    search_term = e.target.value;
-    showRecipe();
-  });
-
   const showRecipe = async () => {
     // clear the results
     content.innerHTML = "";
