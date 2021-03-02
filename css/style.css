@@ -107,3 +107,10 @@ a:hover{
     outline: none;
     color:#232323;
 }
+
+.search-enter-text{
+    position: absolute;
+    left: 90%;
+    top: 20%;
+    color:#232323;
+}
