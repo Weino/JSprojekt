@@ -13,7 +13,6 @@
   </head>
 
   <body>
-
     <header>
       <nav class="meny navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
@@ -55,11 +54,23 @@
                   class="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink"
                 >
-                  <li><a id="americanlink" class="dropdown-item" href="#">American</a></li>
-                  <li><a id="africanlink" class="dropdown-item" href="#">African</a></li>
-                  <li><a id="asianlink" class="dropdown-item" href="#">Asian</a></li>
                   <li>
-                    <a id="europeanlink" class="dropdown-item" href="#">European</a>
+                    <a id="americanlink" class="dropdown-item" href="#"
+                      >American</a
+                    >
+                  </li>
+                  <li>
+                    <a id="africanlink" class="dropdown-item" href="#"
+                      >African</a
+                    >
+                  </li>
+                  <li>
+                    <a id="asianlink" class="dropdown-item" href="#">Asian</a>
+                  </li>
+                  <li>
+                    <a id="europeanlink" class="dropdown-item" href="#"
+                      >European</a
+                    >
                   </li>
                 </ul>
               </li>
@@ -69,16 +80,21 @@
       </nav>
     </header>
 
-
     <section class="home-background">
-          <div class="search-box">
-              <input class="search-button" type="text" placeholder="What are you looking for">
-              <p class="search-enter-text">Press Enter To Search</p>
-          </div>
+      <div class="search-box">
+        <input
+          class="search-button"
+          type="text"
+          placeholder="What are you looking for"
+        />
+        <p class="search-enter-text">Press Enter To Search</p>
+      </div>
     </section>
 
-
-    <main class="maincontent"></main>
+    <div class="flexsteps">
+      <main class="ingredients"></main>
+      <main class="maincontent"></main>
+    </div>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
@@ -88,7 +104,5 @@
     <script src="/script/api.js"></script>
     <script src="/script/writeout.js"></script>
     <script src="/script/removeelements.js"></script>
-
   </body>
-
 </html>

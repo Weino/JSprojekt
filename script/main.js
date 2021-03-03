@@ -1,5 +1,3 @@
-
-
 let searchButton = document.querySelector(".search-button");
 
 searchButton.addEventListener("keypress", function (e) {
@@ -165,5 +163,3 @@ function search(search_term) {
 
   getApi(sendString);
 }
-
-

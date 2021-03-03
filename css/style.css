@@ -1,116 +1,131 @@
-@import
-url('https://fonts.googleapis.com/css?family=Raleway:300,400,700,900');
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,700,900");
 
 header {
-    background: green;
+  background: green;
 }
-body{
-    background-color: #f8f8f8;
+body {
+  background-color: #f8f8f8;
 }
-
-p{
-    font-family: 'Raleway', sans-serif;
-    font-weight: 400;
-}
-.maincontent{
-    width: 90%;
-    margin: auto;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-}
-a:hover{
-    background-color: palegreen;
-    color: black !important;
-}
-#recipediv{
+.flexsteps{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: white;
-    margin: 10px;
-    padding: 15px;
-    border-radius: 5px;
-    border-bottom: 5px solid #f8f8f8;
 }
- #imgdiv{
-    width: 30%;
-    display: flex;
-    flex-direction: column;
+p {
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+}
+.maincontent {
+  width: 85%;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+a:hover {
+  background-color: palegreen;
+  color: black !important;
+}
+#ingredients {
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  background-color: white;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  border-bottom: 5px solid #f8f8f8;
+}
+#recipediv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: white;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  border-bottom: 5px solid #f8f8f8;
+}
+#imgdiv {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
 }
 #info {
-    width: 70%;
-    display: flex;
-    flex-direction: column;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
 }
-.maincontent div img{
-    width: 100%;
-    max-width: 300px;
-    height: 50%;
+.maincontent div img {
+  width: 100%;
+  max-width: 300px;
+  height: 50%;
 }
 .recipebtn {
-    border-radius: 5px;
-    background-color: green;
-    color: white;
-    width: min-content;
-    border: 1px solid #f8f8f8;
+  border-radius: 5px;
+  background-color: green;
+  color: white;
+  width: min-content;
+  border: 1px solid #f8f8f8;
 }
-.recipebtn:hover{
-    background-color: palegreen;
-    color: black;
+.recipebtn:hover {
+  background-color: palegreen;
+  color: black;
 }
 
-.meny {    
-    font-weight: 900;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 1.15rem;
-    padding: 1em;
+.meny {
+  font-weight: 900;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.15rem;
+  padding: 1em;
 }
 
 .home-background {
-    background-image: url(../img/matbilden.jpg);
-    padding: 15em 0;
-    color: #FFF;
-    background-size: cover;
-    background-position: center;
-    height: 50vh;
-    justify-content: center;
-    align-items: center;
-    display: flex;
+  background-image: url(../img/matbilden.jpg);
+  padding: 15em 0;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  height: 50vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 .search-container {
-    position: absolute;
-    left: 45%;
+  position: absolute;
+  left: 45%;
 }
 
 .search-text {
-    text-align: center;
+  text-align: center;
 }
 
-.search-box{
-    position:relative;
-    width: 50%;
+.search-box {
+  position: relative;
+  width: 50%;
 }
 
-.search-box input[type="text"]{
-    width: 100%;
-    padding: 20px;
-    padding-right: 60px;
-    box-sizing: border-box;
-    background:rgba(rgba(0, 0, 0, 0.308), green, blue, alpha);
-    border: 2px solid #232323;
-    border-radius: 10px;
-    font-size: 18px;
-    outline: none;
-    color:#232323;
+.search-box input[type="text"] {
+  width: 100%;
+  padding: 20px;
+  padding-right: 60px;
+  box-sizing: border-box;
+  background: rgba(rgba(0, 0, 0, 0.308), green, blue, alpha);
+  border: 2px solid #232323;
+  border-radius: 10px;
+  font-size: 18px;
+  outline: none;
+  color: #232323;
 }
 
-.search-enter-text{
-    position: absolute;
-    left: 90%;
-    top: 20%;
-    color:#232323;
+.search-enter-text {
+  position: absolute;
+  left: 90%;
+  top: 20%;
+  color: #232323;
 }

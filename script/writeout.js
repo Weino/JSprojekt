@@ -1,4 +1,5 @@
 let content = document.querySelector(".maincontent");
+let ingredientsContent = document.querySelector(".ingredients");
 function writeOut(data) {
   let recipe = [];
 
@@ -119,30 +120,47 @@ function viewRecipe(id) {
 }
 function writeOutRecipe(data) {
   let instructions = [];
+  let ingredientsDiv = document.createElement("div");
+  ingredientsDiv.id = "ingredients";
   for (let index = 0; index < data.length; index++) {
     for (let i = 0; i < data[index].steps.length; i++) {
-      instructions[index] = {
-        Image: data[index].steps[i].equipment.image,
+      for (let j = 0; j < data[index].steps[i].ingredients.length; j++) {
+        let Ingredients = [];
+
+        Ingredients[j] = data[index].steps[i].ingredients[j].name;
+        console.log(Ingredients[j]);
+        let ingredients = document.createElement("p");
+        ingredients.innerHTML = Ingredients[j];
+        
+        ingredientsDiv.appendChild(ingredients);
+        ingredientsContent.insertAdjacentElement("afterbegin", ingredientsDiv);
+      }
+
+      instructions[i] = {
         Instruction: data[index].steps[i].step,
         Number: data[index].steps[i].number,
       };
 
+      console.log(instructions[i].Number + instructions[i].Instruction);
+      let instruction = document.createElement("div");
       let recipeDiv = document.createElement("div");
+
       let instructionNumber = document.createElement("h5");
-      let instructionImage = document.createElement("img");
+
       let instructionStep = document.createElement("p");
 
+      
+
       recipeDiv.id = "recipediv";
-      instructionNumber.innerHTML = instructions[index].Number;
-      instructionImage.src = instructions[index].Image;
-      instructionStep.innerHTML = instructions[index].Instruction;
+      instructionNumber.innerHTML = instructions[i].Number;
+      instructionNumber.style = "margin-right : 15px;";
+
+      instructionStep.innerHTML = instructions[i].Instruction;
 
       recipeDiv.appendChild(instructionNumber);
-      recipeDiv.appendChild(instructionImage);
-
       recipeDiv.appendChild(instructionStep);
-
-      content.appendChild(recipeDiv);
+      instruction.appendChild(recipeDiv);
+      content.insertAdjacentElement("beforeend", instruction);
     }
   }
 }
