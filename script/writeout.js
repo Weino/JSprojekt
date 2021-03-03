@@ -152,7 +152,7 @@ function writeOutRecipe(data) {
       };
 
       console.log(instructions[i].Number + instructions[i].Instruction);
-      let instruction = document.createElement("div");
+
       let recipeDiv = document.createElement("div");
 
       let instructionNumber = document.createElement("h5");
@@ -167,8 +167,8 @@ function writeOutRecipe(data) {
 
       recipeDiv.appendChild(instructionNumber);
       recipeDiv.appendChild(instructionStep);
-      instruction.appendChild(recipeDiv);
-      content.appendChild(instruction);
+
+      content.appendChild(recipeDiv);
     }
   }
 }
