@@ -6,10 +6,10 @@ header {
 body {
   background-color: #f8f8f8;
 }
-.flexsteps{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.flexsteps {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 p {
   font-family: "Raleway", sans-serif;
@@ -31,7 +31,7 @@ a:hover {
 }
 #ingredients {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   flex-wrap: wrap;
   background-color: white;
   margin: 10px;

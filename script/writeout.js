@@ -122,6 +122,16 @@ function writeOutRecipe(data) {
   let instructions = [];
   let ingredientsDiv = document.createElement("div");
   ingredientsDiv.id = "ingredients";
+  let createAltHeader = document.createElement("h3");
+
+  createAltHeader.innerHTML = "Steps";
+  content.appendChild(createAltHeader);
+
+  let createAltHeader2 = document.createElement("h3");
+
+  createAltHeader2.innerHTML = "Ingredients";
+  ingredientsDiv.appendChild(createAltHeader2);
+
   for (let index = 0; index < data.length; index++) {
     for (let i = 0; i < data[index].steps.length; i++) {
       for (let j = 0; j < data[index].steps[i].ingredients.length; j++) {
@@ -131,9 +141,9 @@ function writeOutRecipe(data) {
         console.log(Ingredients[j]);
         let ingredients = document.createElement("p");
         ingredients.innerHTML = Ingredients[j];
-        
+
         ingredientsDiv.appendChild(ingredients);
-        ingredientsContent.insertAdjacentElement("afterbegin", ingredientsDiv);
+        ingredientsContent.appendChild(ingredientsDiv);
       }
 
       instructions[i] = {
@@ -149,8 +159,6 @@ function writeOutRecipe(data) {
 
       let instructionStep = document.createElement("p");
 
-      
-
       recipeDiv.id = "recipediv";
       instructionNumber.innerHTML = instructions[i].Number;
       instructionNumber.style = "margin-right : 15px;";
@@ -160,7 +168,7 @@ function writeOutRecipe(data) {
       recipeDiv.appendChild(instructionNumber);
       recipeDiv.appendChild(instructionStep);
       instruction.appendChild(recipeDiv);
-      content.insertAdjacentElement("beforeend", instruction);
+      content.appendChild(instruction);
     }
   }
 }
