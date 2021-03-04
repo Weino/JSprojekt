@@ -87,7 +87,7 @@ document.querySelector("#americanlink").onclick = function () {
 
   let createAltHeader = document.createElement("h3");
 
-  createAltHeader.innerHTML = "Quick Meals";
+  createAltHeader.innerHTML = "Cuisine: American";
   content.appendChild(createAltHeader);
 
   getApi(sendString);
@@ -105,7 +105,7 @@ document.querySelector("#africanlink").onclick = function () {
 
   let createAltHeader = document.createElement("h3");
 
-  createAltHeader.innerHTML = "Quick Meals";
+  createAltHeader.innerHTML = "Cuisine: African";
   content.appendChild(createAltHeader);
 
   getApi(sendString);
@@ -123,7 +123,7 @@ document.querySelector("#europeanlink").onclick = function () {
 
   let createAltHeader = document.createElement("h3");
 
-  createAltHeader.innerHTML = "Quick Meals";
+  createAltHeader.innerHTML = "Cuisine: European";
   content.appendChild(createAltHeader);
 
   getApi(sendString);
@@ -141,7 +141,7 @@ document.querySelector("#asianlink").onclick = function () {
 
   let createAltHeader = document.createElement("h3");
 
-  createAltHeader.innerHTML = "Quick Meals";
+  createAltHeader.innerHTML = "Cuisine: Asian";
   content.appendChild(createAltHeader);
 
   getApi(sendString);
