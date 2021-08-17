@@ -23,11 +23,15 @@ function writeOut(data) {
     let recipeType = document.createElement("p");
     let recipeSum = document.createElement("p");
     let toRecipe = document.createElement("button");
+    let toFavorite = document.createElement("button");
 
     recipeSum.innerHTML = recipe[index].Summary;
     toRecipe.innerHTML = "View";
     toRecipe.className = "recipebtn";
-    toRecipe.id = recipe[index].Id;
+    toRecipe.id = "Recipe" + recipe[index].Id;
+    toFavorite.innerHTML = "Favorite";
+    toFavorite.className = "favoritebtn";
+    toFavorite.id = "Favorite" + recipe[index].Id;
     recipeDiv.id = "recipediv";
     recipeInfoDiv.id = "info";
     imgDiv.id = "imgdiv";
@@ -41,6 +45,7 @@ function writeOut(data) {
     imgDiv.appendChild(recipeType);
     imgDiv.appendChild(recipeTime);
     imgDiv.appendChild(toRecipe);
+    imgDiv.appendChild(toFavorite);
 
     recipeInfoDiv.appendChild(recipeName);
     recipeInfoDiv.appendChild(recipeSum);
@@ -50,12 +55,66 @@ function writeOut(data) {
 
     content.appendChild(recipeDiv);
 
+    favoriteRecipe(recipe[index].Id);
     viewRecipe(recipe[index].Id);
   }
 }
 
+let list = [];
+
+function writeOutFavorite(data) {
+  console.log(data);
+  let recipeDiv = document.createElement("div");
+  let imgDiv = document.createElement("div");
+  let recipeInfoDiv = document.createElement("div");
+  let recipeName = document.createElement("h5");
+  let recipeImage = document.createElement("img");
+  let recipeTime = document.createElement("p");
+  let recipeType = document.createElement("p");
+  let recipeSum = document.createElement("p");
+  let toRecipe = document.createElement("button");
+
+  recipeSum.innerHTML = data.summary;
+  toRecipe.innerHTML = "View";
+  toRecipe.className = "recipebtn";
+  toRecipe.id = "Recipe" + data.Id;
+  recipeDiv.id = "recipediv";
+  recipeInfoDiv.id = "info";
+  imgDiv.id = "imgdiv";
+  recipeImage.src = data.image;
+  recipeType.innerHTML = "<b>Type of meal:</b> <br>" + data.dishTypes;
+  recipeTime.innerHTML =
+    "<b>Time:</b> <br>Ready in " + data.readyInMinutes + " minutes";
+  recipeName.innerHTML = data.title;
+
+  imgDiv.appendChild(recipeImage);
+  imgDiv.appendChild(recipeType);
+  imgDiv.appendChild(recipeTime);
+  imgDiv.appendChild(toRecipe);
+
+  recipeInfoDiv.appendChild(recipeName);
+  recipeInfoDiv.appendChild(recipeSum);
+
+  recipeDiv.appendChild(imgDiv);
+  recipeDiv.appendChild(recipeInfoDiv);
+
+  content.appendChild(recipeDiv);
+
+  viewRecipe(data.Id);
+}
+
+function favoriteRecipe(id) {
+  let toFavorite = document.getElementById("Favorite" + id);
+  toFavorite.addEventListener("click", function () {
+    list.push(id);
+  
+    console.log(list);
+  });
+}
+
+
 function viewRecipe(id) {
-  let toRecipe = document.getElementById(id);
+  let toRecipe = document.getElementById("Recipe" + id);
   toRecipe.addEventListener("click", function () {
     removeElement();
 

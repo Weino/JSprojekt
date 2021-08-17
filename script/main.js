@@ -39,6 +39,8 @@ document.querySelector("#veggielink").onclick = function () {
   getApi(sendString);
 };
 
+
+
 document.querySelector("#veganlink").onclick = function () {
   removeElement();
   let random = "complexSearch";
@@ -54,6 +56,18 @@ document.querySelector("#veganlink").onclick = function () {
   content.appendChild(createAltHeader);
 
   getApi(sendString);
+};
+
+document.querySelector("#favoriteMeal").onclick = function () {
+  removeElement();
+  let createAltHeader = document.createElement("h2");
+
+  createAltHeader.innerHTML = "Favorite Meals";
+  content.appendChild(createAltHeader);
+
+    list.forEach(element => {
+      getRecipe(element);
+    });
 };
 
 document.querySelector("#quicklink").onclick = function () {
